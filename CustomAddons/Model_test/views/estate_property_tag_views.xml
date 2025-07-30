@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
-    <!-- recrod view -->
+    <!-- record view -->
     <record id="estate_property_tag_action" model="ir.actions.act_window">
-        <field name="name">estate property tag action</field>
+        <field name="name">Property Tags</field>
         <field name="res_model">estate.property.tag</field>
         <field name="view_mode">tree,form</field>
     </record>
@@ -16,5 +16,5 @@
                 <field name="name"></field>
             </search>
         </field>
-     </record>
+    </record>
 </odoo>
