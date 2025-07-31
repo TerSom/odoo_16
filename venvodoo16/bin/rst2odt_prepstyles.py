@@ -1,4 +1,4 @@
-#!/home/terry/odoo16/venvodoo16/bin/python3.12
+#!/home/terry/odoo16_test/venvodoo16/bin/python3.12
 
 # $Id: rst2odt_prepstyles.py 8346 2019-08-26 12:11:32Z milde $
 # Author: Dave Kuhlman <dkuhlman@rexx.com>

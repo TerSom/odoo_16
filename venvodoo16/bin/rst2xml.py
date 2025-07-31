@@ -1,4 +1,4 @@
-#!/home/terry/odoo16/venvodoo16/bin/python3.12
+#!/home/terry/odoo16_test/venvodoo16/bin/python3.12
 
 # $Id: rst2xml.py 4564 2006-05-21 20:44:42Z wiemann $
 # Author: David Goodger <goodger@python.org>

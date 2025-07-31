@@ -1,4 +1,4 @@
-#!/home/terry/odoo16/venvodoo16/bin/python3.12
+#!/home/terry/odoo16_test/venvodoo16/bin/python3.12
 
 # $Id: rst2odt.py 5839 2009-01-07 19:09:28Z dkuhlman $
 # Author: Dave Kuhlman <dkuhlman@rexx.com>

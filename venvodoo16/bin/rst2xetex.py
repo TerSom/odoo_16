@@ -1,4 +1,4 @@
-#!/home/terry/odoo16/venvodoo16/bin/python3.12
+#!/home/terry/odoo16_test/venvodoo16/bin/python3.12
 
 # $Id: rst2xetex.py 7847 2015-03-17 17:30:47Z milde $
 # Author: Guenter Milde

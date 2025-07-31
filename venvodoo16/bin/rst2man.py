@@ -1,4 +1,4 @@
-#!/home/terry/odoo16/venvodoo16/bin/python3.12
+#!/home/terry/odoo16_test/venvodoo16/bin/python3.12
 
 # Author:
 # Contact: grubert@users.sf.net
