@@ -6,6 +6,7 @@ from odoo.exceptions import ValidationError
 class EstateProperty(models.Model):
     _name = 'estate.property'
     _description = 'estate property'
+    _order = 'id desc'
     
     title = fields.Char(required=True)
     description = fields.Text()
@@ -31,7 +32,7 @@ class EstateProperty(models.Model):
         default="north"
     )
     active = fields.Boolean(default=True)
-    state = fields.Selection(
+    status = fields.Selection(
         string="Status",
         selection=[
             ('new','New'),
@@ -70,16 +71,16 @@ class EstateProperty(models.Model):
     
     def action_sold(self):
         for record in self:
-            if record.state == 'cancelled':
+            if record.status == 'cancelled':
                 raise ValidationError("Sudah dibatalkan, tidak bisa dijual.")
-        record.state = 'sold'
+        record.status = 'sold'
         return True
     
     def action_cancel(self):
         for record in self:
-            if record.state == 'sold':
+            if record.status == 'sold':
                 raise ValidationError("Sudah dijual, tidak bisa dibatalkan.")
-        record.state = 'cancelled'
+        record.status = 'cancelled'
         return True
     
     @api.onchange('garden')

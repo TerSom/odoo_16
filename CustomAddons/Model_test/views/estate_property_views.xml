@@ -21,7 +21,7 @@
                 <field name="expected_price"></field>
                 <field name="selling_price"></field>
                 <field name="date_availability"></field>
-                <field name="state"></field>
+                <field name="status"></field>
             </tree>
         </field>
     </record>
@@ -34,21 +34,28 @@
         <field name="arch" type="xml">
             <form string="Test">
                 <header>
-                    <button name="action_sold" type="object" string="Sold"></button>
-                    <button name="action_cancel" type="object" string="Cancel"></button>
-                    <field name="state" widget="statusbar" statusbar_visible="new,offer Received,offer Accepted,sold"></field>
+                    <button name="action_sold" type="object" string="Sold"
+                        attrs="{'invisible': [('status', '!=', 'offer Accepted')]}" />
+                    <button name="action_cancel" type="object" string="Cancel"
+                        attrs="{'invisible': [('status', '!=', 'offer Accepted')]}" />
+
+                    <field name="status" widget="statusbar"
+                        statusbar_visible="new,offer Received,offer Accepted,sold"></field>
                 </header>
                 <sheet>
-                    <div class="oe_title"> 
-                        <h1><field name="title"></field></h1>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="title"></field>
+                        </h1>
                     </div>
                     <group>
-                        <field name="property_tag_ids" widget="many2many_tags" class="pb-3" ></field>
+                        <field name="property_tag_ids" widget="many2many_tags"
+                            options="{'color_field': 'color'}" class="pb-3"></field>
                         <group>
                             <field name="property_type_id" />
                             <field name="postcode"></field>
                             <field name="date_availability" />
-                            <field name="state" />
+                            <field name="status" groups="base.group_no_one" />
                         </group>
                         <group>
                             <field name="expected_price" />
@@ -65,9 +72,9 @@
                                 <field name="facades" />
                                 <field name="garage" />
                                 <field name="garden" />
-                                <field name="garden_area" />
-                                <field name="garden_orientation" />
-                                <field name="total_area"/>
+                                <field name="garden_area" attrs="{'invisible': [('garden', '=', False)]} "/>
+                                <field name="garden_orientation" attrs="{'invisible': [('garden', '=', False)]}"/>
+                                <field name="total_area" />
                             </group>
                         </page>
                         <page string="Other info">
@@ -91,7 +98,7 @@
     </record>
 
     <!-- search view -->
-     <record id="estate_property_search" model="ir.ui.view">
+    <record id="estate_property_search" model="ir.ui.view">
         <field name="name">estate propery search</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
@@ -103,12 +110,12 @@
                 <field name="living_area"></field>
                 <field name="facades"></field>
                 <field name="property_type_id"></field>
-                <filter name="state" string="Available" domain="[('state', 'in', ['new','offer_received'] )]"/>
+                <filter name="status" string="Available"
+                    domain="[('status', 'in', ['new','offer received'] )]" />
                 <group string="group_by">
-                <filter name="postcode" string="Postcode" context="{'group_by':'postcode'}"></filter>
+                    <filter name="postcode" string="Postcode" context="{'group_by':'postcode'}"></filter>
                 </group>
             </search>
         </field>
-     </record>
-
+    </record>
 </odoo>
