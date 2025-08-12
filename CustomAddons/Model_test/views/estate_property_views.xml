@@ -12,15 +12,15 @@
         <field name="name">estate propery tree</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree decoration-success="status in ['offer Received', 'offer Accepted']" decoration-bf="status == 'offer Accepted'" decoration-muted="status == 'sold'">
                 <field name="title"></field>
                 <field name="property_type_id"></field>
                 <field name="postcode"></field>
-                <field name="bedrooms"></field>
-                <field name="living_area"></field>
+                <field name="bedrooms" optional="hiden"></field>
+                <field name="living_area" optional="hiden"></field>
                 <field name="expected_price"></field>
                 <field name="selling_price"></field>
-                <field name="date_availability"></field>
+                <field name="date_availability" optional="hiden"></field>
                 <field name="status"></field>
             </tree>
         </field>
@@ -84,7 +84,7 @@
                             </group>
                         </page>
                         <page string="offers">
-                            <field name="offer_ids"></field>
+                            <field name="offer_ids" attrs="{'readonly':[('status','in',['offer Received','offer Accepted','sold','cancelled'])]}"></field>
                         </page>
                         <page string="Active">
                             <group>

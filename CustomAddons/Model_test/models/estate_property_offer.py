@@ -19,6 +19,7 @@ class EstatePropertyOffer(models.Model):
     property_id = fields.Many2one("estate.property", required=True)
     validity = fields.Integer(default=7, string="Validity (days)")
     date_deadline = fields.Date(compute="_compute_date_deadline", string="deadline" ,inverse="_invers_date_deadline")
+    property_state = fields.Selection(related="property_id.status", string="Property Status", store=True, readonly=True)
     
     _sql_constraints = [
         ('price', 'CHECK(price >= 0)',
@@ -43,7 +44,7 @@ class EstatePropertyOffer(models.Model):
 
     def action_Accept(self):
         for record in self:
-            if record.property_id.state == 'sold':
+            if record.property_id.status == 'sold':
                 raise ValidationError("tidak bisa diterima sudah sold")
             record.status = 'accepted'
             record.property_id.buyer_id = record.partner_id
