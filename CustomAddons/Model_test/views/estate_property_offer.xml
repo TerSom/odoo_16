@@ -1,6 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
 
+     <!-- record view -->
+    <record id="estate_property_offer_action" model="ir.actions.act_window">
+        <field name="name">estate property offer action</field>
+        <field name="res_model">estate.property.offer</field>
+        <field name="domain">[('property_type_id', '=', active_id)]</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
     <!-- tree view -->
     <record id="estate_property_offer_list" model="ir.ui.view">
         <field name="name">Estate Property Offer tree</field>

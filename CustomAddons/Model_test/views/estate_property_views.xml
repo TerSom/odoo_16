@@ -107,13 +107,14 @@
                 <field name="postcode"></field>
                 <field name="expected_price"></field>
                 <field name="bedrooms"></field>
-                <field name="living_area"></field>
+                <field name="living_area" filter_domain="['|', ('living_area', 'ilike', self), ('living_area', '>=', self)]"></field>
                 <field name="facades"></field>
                 <field name="property_type_id"></field>
                 <filter name="status" string="Available"
                     domain="[('status', 'in', ['new','offer received'] )]" />
                 <group string="group_by">
                     <filter name="postcode" string="Postcode" context="{'group_by':'postcode'}"></filter>
+                    <filter name="Available" string="Available"></filter>
                 </group>
             </search>
         </field>
