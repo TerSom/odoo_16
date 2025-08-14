@@ -60,6 +60,12 @@ class EstateProperty(models.Model):
          'angka tidak boleh mines.')
     ]
     
+    @api.ondelete(at_uninstall=False)
+    def unlink(self):
+        for record in self:
+            if record.status not in ['new','cancelled']:
+                raise ValidationError("tidak bisa di hapus karena status tidak new atau cancelled")
+    
     @api.constrains('expected_price','selling_price')
     def _check_selling_price(self):
         precision = 2

@@ -16,6 +16,7 @@
                 <field name="title"></field>
                 <field name="property_type_id"></field>
                 <field name="postcode"></field>
+                <field name="property_tag_ids" widget="many2many_tags"  options="{'color_field': 'color'}" class="pb-3"></field>
                 <field name="bedrooms" optional="hiden"></field>
                 <field name="living_area" optional="hiden"></field>
                 <field name="expected_price"></field>

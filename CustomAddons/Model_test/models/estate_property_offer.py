@@ -55,3 +55,14 @@ class EstatePropertyOffer(models.Model):
     def action_Refuse(self):
         for record in self:
             record.status = 'refused'
+            
+    @api.model
+    def create(self,vals):
+        existing_offer = self.search([("property_id","=", vals["property_id"])])
+        for offer in existing_offer:
+            if vals["price"] <= offer.price:
+                raise ValidationError("penawaran harus lebih besar")
+            property = self.env["estate.property"].browse(vals["property_id"])
+            property.status = "offer Received"  
+        return super(EstatePropertyOffer, self).create(vals)
+    
