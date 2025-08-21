@@ -11,7 +11,7 @@
 
     <!-- tree view -->
     <record id="estate_property_offer_view_list" model="ir.ui.view">
-        <field name="name">Estate.Property.Offer.view.list</field>
+        <field name="name">estate.property.offer.view.list</field>
         <field name="model">estate.property.offer</field>
         <field name="arch" type="xml">
             <tree editable="bottom" decoration-danger="status == 'refused'"
@@ -38,7 +38,7 @@
 
     <!-- form views -->
     <record id="estate_property_offer_view_form" model="ir.ui.view">
-        <field name="name">Estate.Property.Offer.view.form</field>
+        <field name="name">estate.property.offer.view.form</field>
         <field name="model">estate.property.offer</field>
         <field name="arch" type="xml">
             <form>
