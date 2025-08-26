@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <record id="algoritma_pembelian_action" model="ir.actions.act_window">
+        <field name="name">algoritma.pembelian.action</field>
+        <field name="res_model">algoritma.pembelian</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <!-- tree -->
+    <record id="algoritma_pembelian_view_tree" model="ir.ui.view">
+        <field name="name">algoritma.pembelian.view.tree</field>
+        <field name="model">algoritma.pembelian</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nama"></field>
+                <field name="tanggal"></field>
+                <field name="status"></field>
+            </tree>
+        </field>
+    </record>
+
+    <!-- form -->
+    <record id="algoritma_pembelian_view_form" model="ir.ui.view">
+        <field name="name">algoritma.pembelian.view.form</field>
+        <field name="model">algoritma.pembelian</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="status" widget="statusbar"></field>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="nama"></field>
+                            <field name="algoritma_brand_ids" widget="many2many_tags" options="{'color_field': 'color'}"></field>
+                        </group>
+                        <group>
+                            <field name="tanggal"></field>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="product">
+                            <field name="algoritma_pembelian_line_ids" options="{'reload_on_button': True}">
+                                <tree edit="true" editable="bottom" create="true" delete="true">
+                                    <field name="product_id"></field>
+                                    <field name="quantity"></field>
+                                    <field name="uom_id"></field>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- kanban -->
+    <record id="algoritma_pembelian_view_kanban" model="ir.ui.view">
+        <field name="name">algoritma.pembelian.view.kanban</field>
+        <field name="model">algoritma.pembelian</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="nama" />
+                <field name="tanggal" />
+                <field name="status" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <div class="o_kanban_record_top mb16">
+                                <strong>
+                                    <span>
+                                        <t t-esc="record.nama.value" />
+                                    </span>
+                                </strong>
+                            </div>  
+                            <div class="o_kanban_record_bottom">
+                                <div class="oe_kanban_bottom_left">
+                                    <span class="text-muted">
+                                        <t t-esc="record.tanggal.value" />
+                                    </span>
+                                </div>
+                                <div class="oe_kanban_bottom_right">
+                                    <span class="badge badge-pill">
+                                        <t t-esc="record.status.value" />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+</odoo>
