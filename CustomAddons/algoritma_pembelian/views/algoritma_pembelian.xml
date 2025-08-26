@@ -27,13 +27,17 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <field name="status" widget="statusbar"></field>
+                    <button name="to_approve" type="object" class="oe_highlight" string="To Approve" attrs="{'invisible': [('status', 'in' , ['to_approve','approved','done','canceled'] )]}"></button>
+                    <button name="canceled" type="object" class="oe_highlight" string="Canceled" attrs="{'invisible': [('status','in',['canceled','to_approve','done','approved'])]}"></button>
+                    <button name="approved" type="object" class="oe_highlight" string="Approved" attrs="{'invisible': [('status', 'in',['draft','approved','done','canceled'])]}"></button>
+                    <button name="done" type="object" class="oe_highlight" string="Done" attrs="{'invisible':[('status' ,'in',['draft','to_approve','done','canceled'])]}"></button>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,to_approve,approved,done"></field>
                 </header>
                 <sheet>
                     <group>
                         <group>
-                            <field name="nama"></field>
-                            <field name="algoritma_brand_ids" widget="many2many_tags" options="{'color_field': 'color'}"></field>
+                            <field name="nama" attrs="{'readonly' : [('status','!=','draft')]}" ></field>
+                            <field name="algoritma_brand_ids" widget="many2many_tags" options="{'color_field': 'color'}" attrs="{'required' : [('status' ,'=','draft')]}"></field>
                         </group>
                         <group>
                             <field name="tanggal"></field>
@@ -48,6 +52,7 @@
                                     <field name="sales_price"></field>
                                     <field name="standar_price"></field>
                                     <field name="quantity"></field>
+                                    <field name="total_price"></field>
                                     <field name="uom_id"></field>
                                 </tree>
                             </field>
