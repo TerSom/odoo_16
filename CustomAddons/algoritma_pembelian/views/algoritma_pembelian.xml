@@ -44,6 +44,9 @@
                             <field name="algoritma_pembelian_line_ids" options="{'reload_on_button': True}">
                                 <tree edit="true" editable="bottom" create="true" delete="true">
                                     <field name="product_id"></field>
+                                    <field name="name"></field>
+                                    <field name="sales_price"></field>
+                                    <field name="standar_price"></field>
                                     <field name="quantity"></field>
                                     <field name="uom_id"></field>
                                 </tree>
