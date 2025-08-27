@@ -29,5 +29,6 @@
         'views/algoritma_pembelian.xml',
         'views/algoritma_brand.xml',
         'views/algoritma_menus.xml',
+        'data/ir.sequence.xml',
     ],
 }
