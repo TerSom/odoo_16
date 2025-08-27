@@ -5,6 +5,9 @@
         <field name="name">algoritma.pembelian.action</field>
         <field name="res_model">algoritma.pembelian</field>
         <field name="view_mode">tree,form,kanban</field>
+        <field name="domain">[]</field>
+        <field name="context">{'search_default_group_status' : 1}</field>
+        <field name="search_view_id" ref="algoritma_pembelian.algoritma_pembelian_view_search"></field>
     </record>
 
     <!-- tree -->
@@ -13,6 +16,7 @@
         <field name="model">algoritma.pembelian</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="title"></field>
                 <field name="nama"></field>
                 <field name="tanggal"></field>
                 <field name="status"></field>
@@ -34,10 +38,15 @@
                     <field name="status" widget="statusbar" statusbar_visible="draft,to_approve,approved,done"></field>
                 </header>
                 <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="title"></field>
+                        </h1>
+                    </div>
                     <group>
                         <group>
                             <field name="nama" attrs="{'readonly' : [('status','!=','draft')]}" ></field>
-                            <field name="algoritma_brand_ids" widget="many2many_tags" options="{'color_field': 'color'}" attrs="{'required' : [('status' ,'=','draft')]}"></field>
+                            <field name="algoritma_brand_ids" widget="many2many_tags" options="{'color_field': 'color'} and {'no_create': True}" attrs="{'required' : [('status' ,'=','draft')]}" ></field>
                         </group>
                         <group>
                             <field name="tanggal"></field>
@@ -45,15 +54,15 @@
                     </group>
                     <notebook>
                         <page string="product">
-                            <field name="algoritma_pembelian_line_ids" options="{'reload_on_button': True}">
+                            <field name="algoritma_pembelian_line_ids" options="{'reload_on_button': True}" attrs="{'readonly': [('status','in',['approved','done'])]}">
                                 <tree edit="true" editable="bottom" create="true" delete="true">
-                                    <field name="product_id"></field>
+                                    <field name="product_id" domain="[('detailed_type','=','product')]" options="{'no_create': True}" ></field>
                                     <field name="name"></field>
                                     <field name="sales_price"></field>
                                     <field name="standar_price"></field>
                                     <field name="quantity"></field>
                                     <field name="total_price"></field>
-                                    <field name="uom_id"></field>
+                                    <field name="uom_id" domain="[('category_id','in','Weight')]" options="{'no_create': True}"></field>
                                 </tree>
                             </field>
                         </page>
@@ -98,6 +107,29 @@
                     </t>
                 </templates>
             </kanban>
+        </field>
+    </record>
+
+    <record id="algoritma_pembelian_view_search" model="ir.ui.view">
+        <field name="name">algoritma.pembelian.view.search</field>
+        <field name="model">algoritma.pembelian</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="algoritma_pembelian_line_ids" string="Product id" filter_domain="[('algoritma_pembelian_line_ids','ilike',self)]"></field>
+                <field name="nama" string="Nama" filter_domain="[('nama','ilike',self)]"></field>
+
+                <filter string="Draft" name="status" domain="[('status','=','draft')]"></filter>
+                <filter string="To Aprrove" name="staus" domain="[('status','=','to_approve')]"></filter>
+                <filter string="Aprroved" name="staus" domain="[('status','=','approved')]"></filter>
+                <filter string="Done" name="staus" domain="[('status','=','done')]"></filter>
+                <filter string="Canceled" name="staus" domain="[('status','=','canceled')]"></filter>
+
+                <group string="Group By">
+                    <filter name="status" string="Status" domain="[]" context="{'group_by': 'status'}"></filter>
+                    <filter name="algoritma_brand_ids" string="Brand" domain="[]" context="{'group_by': 'algoritma_brand_ids'}"></filter>
+                    <filter name="product_name" string="Product ids" domain="[]" context="{'group_by': 'product_name'}"></filter>
+                </group>
+            </search>
         </field>
     </record>
 

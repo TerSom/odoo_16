@@ -4,9 +4,9 @@ from odoo import fields,models, api
 class algoritma_pembelian(models.Model):
     _name = "algoritma.pembelian"
     _description = "algoritma pembelian"
-    _order = 'nama asc'
+    _order = 'title asc'
     
-    
+    title = fields.Char(string="Title", default="New", readonly=True)
     nama = fields.Char(string="Nama")
     tanggal = fields.Date(string="Tanggal")
     status = fields.Selection(string="Status",
@@ -20,10 +20,14 @@ class algoritma_pembelian(models.Model):
     )
     algoritma_pembelian_line_ids = fields.One2many('algoritma.pembelian.line','algoritma_pembelian_id' ,string="algoritma pembelian line ids")
     algoritma_brand_ids = fields.Many2many('algoritma.brand','algoritma_brand_rel' , 'algoritma_pembelian_id','brand_id',string="Brand")
+    product_name = fields.Char(string="Product Name", related="algoritma_pembelian_line_ids.name" ,store=True)
     
     def to_approve(self):
         for record in self:
             if record.status == 'draft':
+                if record.title == 'New':
+                    seq = self.env['ir.sequence'].next_by_code('algoritma.pembelian') or 'New'
+                    record.title = seq
                 record.status = 'to_approve'
     
     def approved(self):
