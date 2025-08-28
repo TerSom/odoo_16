@@ -19,8 +19,16 @@
     id="algoritma_brand_menu_action"
     name="Brand"
     parent="algoritma_pembelian_menu_root"
-    action="algoritma_brand_action"
+    action="algoritma_pembelian.algoritma_brand_action"
     sequence="3"
+    />
+
+    <menuitem 
+    id="algoritma_wizard_menu_action"
+    name="Report"
+    parent="algoritma_pembelian_menu_root"
+    action="algoritma_pembelian.algoritma_pembelian_wizard_report"
+    sequence="4"
     />
 
 </odoo>

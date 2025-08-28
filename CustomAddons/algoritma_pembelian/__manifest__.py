@@ -28,7 +28,8 @@
         'security/ir.model.access.csv',
         'views/algoritma_pembelian.xml',
         'views/algoritma_brand.xml',
-        'views/algoritma_menus.xml',
+        'wizard/algoritma_pembelian_report.xml',
         'data/ir.sequence.xml',
+        'views/algoritma_menus.xml',
     ],
 }
