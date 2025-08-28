@@ -1,4 +1,6 @@
 from odoo import fields,models, api
+from datetime import date
+from odoo.exceptions import UserError, ValidationError
 
 
 class algoritma_pembelian(models.Model):
@@ -22,12 +24,32 @@ class algoritma_pembelian(models.Model):
     algoritma_brand_ids = fields.Many2many('algoritma.brand','algoritma_brand_rel' , 'algoritma_pembelian_id','brand_id',string="Brand")
     product_name = fields.Char(string="Product Name", related="algoritma_pembelian_line_ids.name" ,store=True)
     
+    @api.model
+    def create(self,vals):
+        if not vals.get('title'):
+            seq = self.env['ir.sequence'].next_by_code('algoritma.pembelian') or 'New'
+            vals['title'] = seq
+                    
+        res = super(algoritma_pembelian,self).create(vals)
+        for recrod in res:
+            tanggal_pembelian = recrod.tanggal
+            tanggal_sekarang = date.today()
+            if tanggal_pembelian < tanggal_sekarang:
+                raise ValidationError("Tanggal pembelian tidak boleh kurang dari tanggal sekrang")
+        return res
+    
+    def write(self,vals):
+        res = super(algoritma_pembelian,self).write(vals)
+        if 'tanggal' in vals:
+            tanggal_pembelian = self.tanggal
+            tanggal_sekarang = date.today()
+            if tanggal_pembelian < tanggal_sekarang:
+                raise ValidationError("Tanggal pembelian tidak boleh kurang dari tanggal sekrang")
+        return res
+                
     def to_approve(self):
         for record in self:
             if record.status == 'draft':
-                if record.title == 'New':
-                    seq = self.env['ir.sequence'].next_by_code('algoritma.pembelian') or 'New'
-                    record.title = seq
                 record.status = 'to_approve'
     
     def approved(self):
