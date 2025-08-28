@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    
+    <record id="product_template_inherit_view_form" model="ir.ui.view">
+        <field name="name">product.template.inherit.view.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"></field>
+        <field name="arch" type="xml">
+            <xpath expr="//form/header" position="inside">
+                <field name="status" widget="statusbar"></field>
+            </xpath>
+            <xpath expr="//form/header/button" position="before">
+                <button string="To Approve" name="to_approve" type="object" attrs="{'invisible' : [('status', '!=','draft')]} " class="bg-primary text-white"></button>
+                <button string="Approved" name="approved" type="object" attrs="{'invisible' : [('status', '!=','to_approve')]} " class="bg-primary text-white"></button>
+                <button string="Done" name="done" type="object" attrs="{'invisible' : [('status', '!=', 'approved')]} " class="bg-primary text-white"></button>
+                <button string="Canceled" name="cancel" type="object" attrs="{'invisible' : [('status', '!=', 'draft')]} " class="bg-primary text-white"></button>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

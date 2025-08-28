@@ -22,7 +22,7 @@
                     <field name="periode_akhir"></field>
                 </group>
                 <footer>
-                    <button string="Submit" name="" class="btn-primary"></button>
+                    <!-- <button string="Submit" name="" class="btn-primary"></button> -->
                     <button string="Cancel" class="btn-default" special="cancel"></button>
                 </footer>
             </form>

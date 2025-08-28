@@ -29,7 +29,8 @@
         'views/algoritma_pembelian.xml',
         'views/algoritma_brand.xml',
         'wizard/algoritma_pembelian_report.xml',
-        'data/ir.sequence.xml',
         'views/algoritma_menus.xml',
+        'data/ir.sequence.xml',
+        'views/product_template_inherit.xml',
     ],
 }
