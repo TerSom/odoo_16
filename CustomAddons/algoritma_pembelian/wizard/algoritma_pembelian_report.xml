@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="algoritma_pembelian_wizard_report" model="ir.actions.act_window">
+        <field name="name">algoritma.pembelian.wizard.report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">algoritma.pembelian.wizard.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">No Data</p>
+        </field>
+    </record>
+
+    <record id="algoritma_pembelian_report_view" model="ir.ui.view">
+        <field name="name">algoritma.pembelian.report.view</field>
+        <field name="model">algoritma.pembelian.wizard.report</field>
+        <field name="arch" type="xml">
+            <form string="Laporan Algoritma Pembelian">
+                <group>
+                    <field name="name"></field>
+                    <field name="periode_awal"></field>
+                    <field name="periode_akhir"></field>
+                </group>
+                <footer>
+                    <button string="Submit" name="" class="btn-primary"></button>
+                    <button string="Cancel" class="btn-default" special="cancel"></button>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
