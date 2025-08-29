@@ -3,17 +3,28 @@
     
     <menuitem 
     id="algoritma_pembelian_menu_root"
-    name="Algoritma pembelian"
+    name="Pembelian"
     sequence="1"
     />
 
     <menuitem 
     id="algoritma_pembelian_menu_action"
-    name="Algoritma pembelian"
+    name="Pembelian"
     parent="algoritma_pembelian_menu_root"
     action="algoritma_pembelian.algoritma_pembelian_action"
-    sequence="2"
-    />
+    sequence="2"/>
+        <menuitem 
+        id="algoritma_pembelian_menu_A_action"
+        name="Pembelian A"
+        parent="algoritma_pembelian_menu_action"
+        action="algoritma_pembelian.algoritma_pembelian_action"
+        sequence="11"/>
+        <menuitem 
+        id="algoritma_pembelian_menu_B_action"
+        name="Pembelian B"
+        parent="algoritma_pembelian_menu_action"
+        action="algoritma_pembelian.algoritma_pembelian_server_action_show_tree_view"
+        sequence="12"/>
 
     <menuitem 
     id="algoritma_brand_menu_action"
