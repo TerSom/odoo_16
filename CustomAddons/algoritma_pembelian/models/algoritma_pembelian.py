@@ -24,6 +24,22 @@ class algoritma_pembelian(models.Model):
     algoritma_brand_ids = fields.Many2many('algoritma.brand','algoritma_brand_rel' , 'algoritma_pembelian_id','brand_id',string="Brand")
     product_name = fields.Char(string="Product Name", related="algoritma_pembelian_line_ids.name" ,store=True)
     
+    def show_tree_view(self):
+        tree_view = self.env['ir.model.data']._xmlid_to_res_id('algoritma_pembelian.algoritma_pembelian_view_tree')
+        form_view = self.env['ir.model.data']._xmlid_to_res_id('algoritma_pembelian.algoritma_pembelian_view_form')
+        domain = [('status' ,'=','draft')]
+        result = {
+            'name' : 'Pembelian B',
+            'type' : 'ir.actions.act_window',
+            'view_mode': 'tree,form',
+            'view' : [[tree_view, 'tree'],[form_view, 'form']],
+            'target' : 'current',
+            'res_model' : 'algoritma.pembelian',
+            'domain' : domain,
+            'limit' : 48
+        }
+        return result
+    
     @api.model
     def create(self,vals):
         if not vals.get('title'):

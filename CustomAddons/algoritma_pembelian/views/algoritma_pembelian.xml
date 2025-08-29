@@ -110,6 +110,7 @@
         </field>
     </record>
 
+    <!-- search -->
     <record id="algoritma_pembelian_view_search" model="ir.ui.view">
         <field name="name">algoritma.pembelian.view.search</field>
         <field name="model">algoritma.pembelian</field>
@@ -131,6 +132,22 @@
                 </group>
             </search>
         </field>
+    </record>
+
+    <!-- ir.server.action -->
+    <record id="algoritma_pembelian_server_action_to_approve" model="ir.actions.server">
+        <field name="name">To Approve</field>
+        <field name="model_id" ref="model_algoritma_pembelian"></field>
+        <field name="binding_model_id" ref="model_algoritma_pembelian"></field>
+        <field name="state">code</field>
+        <field name="code">action=records.to_approve()</field>
+    </record>
+
+    <record id="algoritma_pembelian_server_action_show_tree_view" model="ir.actions.server">
+        <field name="name">Pembelian A</field>
+        <field name="model_id" ref="model_algoritma_pembelian"></field>
+        <field name="state">code</field>
+        <field name="code">action=model.show_tree_view()</field>
     </record>
 
 </odoo>
