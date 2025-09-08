@@ -32,5 +32,6 @@
         'views/algoritma_menus.xml',
         'data/ir.sequence.xml',
         'views/product_template_inherit.xml',
+        'views/algoritma_pembelian_corn.xml',
     ],
 }

@@ -24,6 +24,12 @@ class algoritma_pembelian(models.Model):
     algoritma_brand_ids = fields.Many2many('algoritma.brand','algoritma_brand_rel' , 'algoritma_pembelian_id','brand_id',string="Brand")
     product_name = fields.Char(string="Product Name", related="algoritma_pembelian_line_ids.name" ,store=True)
     
+    def func_delete_draft(self):
+        algoritma_pembelian_obj = self.env['algoritma.pembelian'].search([('status','=','draft')])
+        for line in algoritma_pembelian_obj:
+            line.unlink()
+            return True
+            
     def show_tree_view(self):
         tree_view = self.env['ir.model.data']._xmlid_to_res_id('algoritma_pembelian.algoritma_pembelian_view_tree')
         form_view = self.env['ir.model.data']._xmlid_to_res_id('algoritma_pembelian.algoritma_pembelian_view_form')
