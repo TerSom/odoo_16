@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="current_price_action" model="ir.actions.act_window">
+        <field name="name">current.price.action</field>
+        <field name="res_model">current.price</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="current_price_tree_view" model="ir.ui.view">
+        <field name="name">current.price.tree.view</field>
+        <field name="model">current.price</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="mid_price"></field>
+                <field name="sell"></field>
+                <field name="buy"></field>
+                <field name="installment"></field>
+                <field name="updated_at"></field>
+            </tree>
+        </field>
+    </record>
+
+    <record id="current_price_form_view" model="ir.ui.view">
+        <field name="name">current.price.form.view</field>
+        <field name="model">current.price</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="mid_price"></field>
+                        <field name="sell"></field>
+                        <field name="buy"></field>
+                        <field name="installment"></field>
+                        <field name="updated_at"></field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

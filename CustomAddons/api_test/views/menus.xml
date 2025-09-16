@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <menuitem 
+    id="api_test_menu_root"
+    name="Gold Price"
+    sequence="1"
+    />
+
+    <menuitem 
+    id="current_price_menu_action"
+    name="Current Price"
+    parent="api_test.api_test_menu_root"
+    action="api_test.current_price_action"
+    sequence="2"
+    />
+
+    <menuitem 
+    id="history_price_menu_action"
+    name="History Price"
+    parent="api_test.api_test_menu_root"
+    action="api_test.history_price_action"
+    sequence="3"
+    />
+</odoo>

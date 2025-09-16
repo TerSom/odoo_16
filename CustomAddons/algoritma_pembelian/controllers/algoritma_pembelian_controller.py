@@ -20,7 +20,7 @@ class AlgoritmaPembelianRestApi(http.Controller):
             detail_brand = []
             dict_detail_product = {}
             detail_product = []
-            for b in h.algoritma_algoritma_brand_ids:
+            for b in h.algoritma_brand_ids:
                 dict_detail_brand = {'id': b.id, 'name': b.name }
                 detail_brand.append(dict_detail_brand)
             for p in h.algoritma_pembelian_line_ids:

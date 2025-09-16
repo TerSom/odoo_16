@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="history_price_action" model="ir.actions.act_window">
+        <field name="name">history.price.action</field>
+        <field name="res_model">history.price</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record id="history_price_tree_view" model="ir.ui.view">
+        <field name="name">history.price.tree.view</field>
+        <field name="model">history.price</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sell"></field>
+                <field name="buy"></field>
+                <field name="installment"></field>
+                <field name="updated_at"></field>
+            </tree>
+        </field>
+    </record>
+
+    <record id="history_price_form_view" model="ir.ui.view">
+        <field name="name">history.price.form.view</field>
+        <field name="model">history.price</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="sell"></field>
+                        <field name="buy"></field>
+                        <field name="installment"></field>
+                        <field name="updated_at"></field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
