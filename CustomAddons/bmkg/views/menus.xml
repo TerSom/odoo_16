@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <menuitem 
+    id ="bmkg_menu_root"
+    name = "Info Gempa"
+    sequence = "1"
+
+    />
+
+    <menuitem 
+    id = "bmkg_info_gempa_terbaru_menu_action"
+    name = "Info Gempa Terbaru"
+    parent = 'bmkg_menu_root'
+    action = "bmgk_gempa_bumi_terbaru_action"
+    sequence = "2"
+    />
+
+    <menuitem 
+    id="bmgk_gempa_bumi_menu_action"
+    name="Info Gempa Bumi"
+    parent="bmkg_menu_root"
+    action="bmgk_gempa_bumi_action"
+    sequence="3"/>
+
+    <menuitem 
+    id="bmkg_info_gempa_m_5_0_menu_action"
+    name="Info Gempa M 5.0"
+    parent="bmkg_menu_root"
+    action="bmkg_gempa_bumi_m_5_0_action"
+    sequence="4"/>
+
+</odoo>

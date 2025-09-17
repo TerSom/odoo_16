@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_gempa_bumi_terbaru,bmkg.access_gempa_bumi_terbaru,model_gempa_bumi_terbaru,base.group_user,1,1,1,1
+access_gempa_bumi_m_5_0_,bmkg.access_gempa_bumi_m_5_0_,model_gempa_bumi_m_5_0,base.group_user,1,1,1,1
+access_gempa_bumi,bmkg.access_gempa_bumi,model_gempa_bumi,base.group_user,1,1,1,1
