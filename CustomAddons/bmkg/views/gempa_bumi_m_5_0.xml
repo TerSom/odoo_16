@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="bmkg_gempa_bumi_m_5_0_action" model="ir.actions.act_window">
+        <field name="name">Info Gempa M 5.0</field>
+        <field name="res_model">gempa.bumi.m.5.0</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- tree viws -->
+    <record id="bmkg_gempa_bumi_m_5_0_tree_view" model="ir.ui.view">
+        <field name="name">bmkg.gempa.bumi.bumi.m.5.0.tree.view</field>
+        <field name="model">gempa.bumi.m.5.0</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="tanggal" />
+                <field name="jam" />
+                <field name="dateTime"></field>
+                <field name="wilayah" />
+                <field name="magnitude" />
+                <field name="kedalaman" />
+                <field name="bujur" optional="show" />
+                <field name="lintang" optional="show" />
+                <field name="potensi" optional="show" />
+                <field name="coordinates" optional="show" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- form viws -->
+    <record id="bmkg_gempa_bumi_m_5_0_form_view" model="ir.ui.view">
+        <field name="name">bmkg.gempa.bumi.m.5.0.form.view</field>
+        <field name="model">gempa.bumi.m.5.0</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Waktu">
+                        <field name="tanggal" />
+                        <field name="jam"></field>
+                        <field name="dateTime"></field>
+                    </group>
+
+                    <group string="Lokasi">
+                        <field name="coordinates"></field>
+                        <field name="lintang"></field>
+                        <field name="bujur"></field>
+                        <field name="wilayah"></field>
+                    </group>
+
+                    <group string="Info Gempa">
+                        <field name="magnitude"></field>
+                        <field name="kedalaman"></field>
+                    </group>
+
+                    <group string="Dampak">
+                        <field name="potensi"></field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
