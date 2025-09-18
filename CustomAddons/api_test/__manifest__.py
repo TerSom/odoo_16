@@ -28,6 +28,7 @@
         'security/ir.model.access.csv',
         'views/current_price.xml',
         'views/history_price.xml',
+        'data/cron_api_price_gold.xml',
         'views/menus.xml',
         
     ],
