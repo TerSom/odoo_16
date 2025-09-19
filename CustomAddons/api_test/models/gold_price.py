@@ -9,7 +9,6 @@ class CurrentPrice(models.Model):
     buy = fields.Float('Buy Price')
     installment = fields.Float('Installment')
     updated_at = fields.Date('Updated At')
-
 class HistoryPrice(models.Model):
     _name = 'history.price'
     _description = 'History Gold Price'
