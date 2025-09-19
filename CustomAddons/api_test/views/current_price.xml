@@ -3,7 +3,7 @@
     <record id="current_price_action" model="ir.actions.act_window">
         <field name="name">current.price.action</field>
         <field name="res_model">current.price</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,graph,pivot</field>
     </record>
 
     <record id="current_price_tree_view" model="ir.ui.view">
@@ -35,6 +35,34 @@
                     </group>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="current_price_graph_view" model="ir.ui.view">
+        <field name="name">current.price.graph.view</field>
+        <field name="model">current.price</field>
+        <field name="arch" type="xml">
+            <graph string="Current Price" type="line">
+                <field name="updated_at" type="row" />
+                <field name="mid_price" type="measure" />
+                <field name="sell" type="measure" />
+                <field name="buy" type="measure" />
+                <field name="installment" type="measure" />
+            </graph>
+        </field>
+    </record>
+
+    <record id="current_price_pivot_view" model="ir.ui.view">
+        <field name="name">curent.price.pivot.view</field>
+        <field name="model">current.price</field>
+        <field name="arch" type="xml">
+             <pivot string="Current Price">
+                <field name="updated_at" type="row" />
+                <field name="mid_price" type="measure" />
+                <field name="sell" type="measure" />
+                <field name="buy" type="measure" />
+                <field name="installment" type="measure" />
+            </pivot>
         </field>
     </record>
 </odoo>

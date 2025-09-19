@@ -3,7 +3,7 @@
     <record id="history_price_action" model="ir.actions.act_window">
         <field name="name">history.price.action</field>
         <field name="res_model">history.price</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,graph,pivot</field>
     </record>
 
 
@@ -34,6 +34,32 @@
                     </group>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="history_price_graph_view" model="ir.ui.view">
+        <field name="name">history.price.graph.view</field>
+        <field name="model">history.price</field>
+        <field name="arch" type="xml">
+            <graph string="History Price" type="line">
+                <field name="updated_at" type="row" interval="week" />
+                <field name="sell" type="measure" />
+                <field name="buy" type="measure" />
+                <field name="installment" type="measure" />
+            </graph>
+        </field>
+    </record>
+
+    <record id="history_price_pivot_view" model="ir.ui.view">
+        <field name="name">curent.price.pivot.view</field>
+        <field name="model">history.price</field>
+        <field name="arch" type="xml">
+            <pivot string="History Price">
+                <field name="updated_at" type="row" interval="week" />
+                <field name="sell" type="measure" />
+                <field name="buy" type="measure" />
+                <field name="installment" type="measure" />
+            </pivot>
         </field>
     </record>
 </odoo>

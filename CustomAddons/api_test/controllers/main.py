@@ -7,7 +7,7 @@ class GoldPriceController(http.Controller):
 
     @http.route(['/api/gold_price_get/'], type='http', auth='public', methods=['GET'], csrf=False)
     def sync_gold_price_get(self, **params):
-        url = "https://pluang.com/api/asset/gold/pricing?daysLimit=100"
+        url = "https://pluang.com/api/asset/gold/pricing?daysLimit=200"
         response = requests.get(url)
 
         if response.status_code != 200:
@@ -24,17 +24,40 @@ class GoldPriceController(http.Controller):
         
         current = data.get("current")
         if current:
-            request.env["current.price"].sudo().create({
+            exiting = request.env["current.price"].sudo().search([
+                ('updated_at','<=', current.get('updated_at')),
+            ], limit=1 )
+            if exiting:
+                exiting.write({
                 "mid_price": current.get("midPrice"),
-                "sell": current.get("sell"),
-                "buy": current.get("buy"),
-                "installment": current.get("installment"),
-                "updated_at": current.get("updated_at"),
+                "sell" : current.get("sell"),
+                "buy" : current.get("buy"),
+                "installment" : current.get("installment"),
+                "updated_at" : current.get("updated_at"),
             })
+            else:
+                request.env['current.price'].sudo().create({
+                    "mid_price": current.get("midPrice"),
+                    "sell" : current.get("sell"),
+                    "buy" : current.get("buy"),
+                    "installment" : current.get("installment"),
+                    "updated_at" : current.get("updated_at"),
+                })
+                
             
         history_list = data.get("history", [])
         for history in history_list:
-            request.env["history.price"].sudo().create({
+            exiting = request.env['history.price'].sudo().search([
+                ('updated_at', '=', history.get('updated_at'))
+            ],limit=1)
+            if exiting:
+                exiting.write({
+                    "sell": history.get("sell"),
+                    "buy": history.get("buy"),
+                    "installment": history.get("installment"),
+                })
+            else:
+                request.env["history.price"].sudo().create({
                 "sell": history.get("sell"),
                 "buy": history.get("buy"),
                 "installment": history.get("installment"),
