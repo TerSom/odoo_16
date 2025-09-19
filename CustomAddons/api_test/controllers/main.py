@@ -50,3 +50,49 @@ class GoldPriceController(http.Controller):
             content_type='application/json',
             status=200
         )
+
+    @http.route(['/api/local_gold_price_api/'], type='http', auth='public', methods=['GET'], csrf=False)
+    def local_gold_price_get(self, **params):
+        current_price = request.env['current.price'].sudo().search([])
+        history_price = request.env['history.price'].sudo().search([])
+        
+        current_list = []
+        for current in current_price:
+            current_list.append({
+                "mid_price" : current.mid_price,
+                "sell" : current.sell,
+                "buy" : current.buy,
+                "installment" : current.installment,
+                "updated_at" : current.updated_at,   
+            })
+        
+        history_list = []
+        for history in history_price:
+            history_list.append({
+                "sell" : history.sell,
+                "buy" : history.buy,
+                "installment" : history.installment,
+                "updated_at" : history.updated_at,   
+            })
+            
+        if not current_list and not history_list:
+            return http.Response(
+                json.dumps({
+                    "status": 404,
+                    "message": "Data tidak ditemukan"
+                }),
+                content_type='application/json',
+                status=404
+            )
+        
+        return http.Response(
+            json.dumps({
+                "status": 200,
+                "count_current" : len(current_list),
+                "count_history" : len(history_list),
+                "current" : current_list,
+                "history" : history_list
+            },default=str ),
+            content_type='application/json',
+            status=200
+        )
